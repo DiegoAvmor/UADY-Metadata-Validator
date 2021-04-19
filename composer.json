@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "uadymv/metadata-validator",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Validador de metadatos para evaluar la calidad de los recursos de los repositorios institucionales",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
@@ -10,7 +10,8 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "caseyamcl/phpoaipmh": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
