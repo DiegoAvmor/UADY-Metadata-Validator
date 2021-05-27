@@ -15,48 +15,111 @@
     <script defer src="/node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
 </head>
 
-<body>
+<body class="bg-light text-primary">
     <header class="d-flex w-100 mx-0">
-        <div class="uady-logo-container">
+        <div class="uady-logo-container bg-light">
             <img class="rounded mx-auto d-block mt-2" width="100px" src="{{URL::asset('assets/logouady.png')}}">
         </div>
-        <div class="top-bar container-lg d-flex mw-100 mx-0 justify-content-between align-items-center">
+        <div class="top-bar container-lg d-flex mw-100 mx-0 justify-content-between align-items-center bg-primary text-light">
             <h5 class="pt-2 hdln-5">Universidad Autónoma de Yucatán</h5>
             <i class="fas fa-globe"></i>
         </div>
     </header>
 
-    <main class="container">
-        <div class="row">
-            <div class="col-6">
-                <h4 class="border-bottom border-warning">Validador de Metadatos</h4>
-                <div class="my-5">
-                    <label for="floatingInput"><h5>OAI-PMH</h5></label>
-                    <input type="url" class="form-control" id="floatingInput" placeholder="genreric.eprints.org">
+    <main>
+
+        <div class="container">
+            <!-- Grid container-->
+            <div class="row">
+                <form class="col-6" id="fileForm">
+                    <h4 class="border-bottom border-warning">Validador de Metadatos</h4>
+                    <div class="my-5">
+                        <label for="floatingInput">
+                            <h5>OAI-PMH</h5>
+                        </label>
+                        <input type="url" class="form-control" id="floatingInput" placeholder="Ejemp: genreric.eprints.org">
+                    </div>
+                    <div class="mb-3">
+                        <label for="xmlTextArea" class="form-label">
+                            <h5>Validar XML</h5>
+                        </label>
+                        <textarea class="form-control" id="xmlTextArea" rows="7"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning offset-md-9 mt-3">Comprobar</button>
+                </form>
+                <div class="col-5 ml-5 pt-5 pl-5">
+                    <!-- verify the padding tho -->
+                    <div>
+                        <h4 class="pt-4">Resultados</h4>
+                        <ol class="list-group list-group-numbered">
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Status</li>
+                            <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Content Type</li>
+                            <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>metadatos</li>
+                        </ol>
+                    </div>
+                    <div class="border-bottom border-warning">
+                        <h5 class="mt-5 text-center">Resultados de Validación de Datos</h5>
+                        <h5 class="mt-3 text-center text-warning" id="percentResults">60%</h5>
+                        <h6 class="text-center text-dark">Datos Correctos</h6>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Metadato</th>
+                                <th scope="col">Estado</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>dc:title</td>
+                            <td><i class="fas fa-check-circle text-success"></i>Correcto</td>
+                        </tr>
+                        <tr>
+                            <td>Creator</td>
+                            <td><i class="fas fa-check-circle text-success"></i>Correcto</td>
+                        </tr>
+                        <tr>
+                            <td>info:eu-repo</td>
+                            <td><i class="fas fa-exclamation-circle text-danger"></i>Error</td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="mb-3">
-                    <label for="xmlTextArea" class="form-label"><h5>Validar XML</h5></label>
-                    <textarea class="form-control" id="xmlTextArea" rows="7"></textarea>
-                </div>
-                <button type="button" class="btn btn-warning offset-md-9 mt-3">Comprobar</button>
             </div>
-            <div class="col-5 ml-5 pt-5 pl-5"> <!-- verify the padding tho -->
-                <div>
-                    <h4 class="pt-4">Resultados</h4>
-                    <ol class="list-group list-group-numbered">
-                        <li class="list-group-item"><i class="fas fa-check-circle"></i>Status</li>
-                        <li class="list-group-item"><i class="fas fa-exclamation-circle"></i>Content Type</li>
-                        <li class="list-group-item"><i class="fas fa-exclamation-circle"></i>metadatos</li>
-                    </ol>
-                </div>
-                <div>
-                    <h5 class="mt-5 text-center">Resultados de Validación de Datos</h5>
-                    <h5 class="mt-3 text-center text-warning" id="percentResults">60%</h5>
-                    <h6 class="text-center text-dark">Datos Correctos</h6>
-                </div>
+            <div class="row">
+                <button type="button" class="btn btn-warning offset-md-10 px-4">Ver más</button>
             </div>
         </div>
-
+        
+        <div class="m-5">
+            <h3 class="border-bottom border-warning">Más Detalles</h3>
+            <table class="table">
+                <thead class="text-center">
+                    <tr>
+                        <th scope="col">Metadato</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">No. de Depósitos</th>
+                        <th scope="col">Validación</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>dc:title</td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"><i class="fas fa-check-circle text-success"></i></td>
+                </tr>
+                <tr>
+                    <td>Creator</td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"><i class="fas fa-check-circle text-success"></i></td>
+                </tr>
+                <tr>
+                    <td>info:eu-repo</td>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"><i class="fas fa-exclamation-circle text-danger"></i></td>
+                </tr>
+            </table>
+        </div>
     </main>
     <script src="{{asset('js/app.js')}}"></script>
 </body>
