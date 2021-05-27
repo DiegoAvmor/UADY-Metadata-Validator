@@ -2,7 +2,6 @@
 $mainFont: 'uadyFont';
 
 //sizes
-$min: .35em;
 $med: 2.5em;
 $faSize: 1.3em;
 
@@ -13,23 +12,25 @@ $faSize: 1.3em;
     src: url(/public/fonts/uady/lucida-bright-regular.ttf);
 }
 
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
-
 //Colores UADY
 $uadyWhite: #F1FAEE;
 $uadyBlue: #002E5F;
 $goldUady: #C79316;
 $shadow: #CED4DA;
 
-$warning: $goldUady;
+// Colors
+$blue: $uadyBlue;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #FF0C38;
+$orange: #f6993f;
+$yellow: $goldUady;
+$green: #5CA15D;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+$light:  $uadyWhite;
+
+
+//Bootstrap variables mod
 $border-width: .1em;

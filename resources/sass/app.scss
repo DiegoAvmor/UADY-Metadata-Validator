@@ -11,36 +11,22 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 body{
-    color: $uadyBlue;
     font-family: $mainFont;
-    background-color: $uadyWhite;
 }
 
 .uady-logo-container{
     width: 150px;
     height: 165px;
-    background-color: $uadyWhite;
     box-shadow: 0px 3px $shadow;
     clip-path: polygon(0 0, 100% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
 
 .container-lg{
-    color: $uadyWhite;
-    background-color: $uadyBlue;
     box-shadow: 0px 5px $shadow;
 }
 
 .top-bar{
-    color: $uadyWhite;
     height: $med;
-}
-
-.fa-check-circle{
-    color: #5CA15D;
-}
-
-.fa-exclamation-circle{
-    color: #FF0C38;
 }
 
 .fa-check-circle, .fa-exclamation-circle{
