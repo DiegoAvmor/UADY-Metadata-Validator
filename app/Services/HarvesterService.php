@@ -11,6 +11,19 @@ use Illuminate\Support\Facades\Log;
 class HarvesterService{
 
     private static $instance = null;
+    private $result = array();
+
+    function __construct(){
+        //Se realiza la carga de las reglas
+        $rules = config('rules.ruleset');
+
+        foreach ($rules as $rule) {
+            $instance = $rule['instance'];
+            $this->result[] = $instance->validateMetadata("SomeValue");
+        }
+
+        dd( $this->result);
+    }
     
     public static function getInstance(){
         if (self::$instance == null){
