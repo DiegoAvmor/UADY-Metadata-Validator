@@ -17,7 +17,7 @@ class ValidatorController extends Controller
 
     public function harvestURL(Request $request){
         try {
-            $this->harvesterService->harvest('https://openscholarship.wustl.edu/do/oai/');
+            $this->harvesterService->harvest('http://redi.uady.mx/oai/request');
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }

@@ -12,18 +12,11 @@ use App\Models\MetadataList;
 class HarvesterService{
 
     private static $instance = null;
-    private $result = array();
+    private $rules = [];
 
     function __construct(){
         //Se realiza la carga de las reglas
-        $rules = config('rules.ruleset');
-
-        foreach ($rules as $rule) {
-            $instance = $rule['instance'];
-            $this->result[] = $instance->validateMetadata("SomeValue");
-        }
-
-        dd( $this->result);
+        $this->rules = config('rules.ruleset');
     }
     
     public static function getInstance(){
@@ -38,19 +31,33 @@ class HarvesterService{
             $client = new Client($route);
             $routeEndpoint = new Endpoint($client);
             $results = $routeEndpoint->listRecords($metadataPrefix);
-            
-            $mdlist = new MetadataList();
-            for($i=0; $i<1; $i++)
-            {
-                $item = $results->next()->metadata->children('oai_dc', 1)->dc->children('dc', 1);
-                $mdlist->add($item);
+
+            $validationResults = [];
+
+            $limit = 0;
+            foreach ($results as $key => $result) {
+                $metadata = $result->metadata->children('oai_dc', 1)->dc->children('dc', 1);
+                $validationResults[$key] = $this->validateResource($metadata);
+                //Dummy limit for testing purposes
+                $limit++;
+                if($limit>=10){
+                    break;
+                }
             }
-            
-            dd($mdlist->get(0)->toArray());
+            dd($validationResults);
+            return $validationResults;
 
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
+    }
+
+    private function validateResource($metadata){
+        $responseList = [];
+        foreach ($this->rules as $key => $rule) {
+            $responseList[$key] = $rule['instance']->validateMetadata($metadata);
+        }
+        return $responseList;
     }
 
 }
