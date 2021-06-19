@@ -7,6 +7,7 @@ use Phpoaipmh\Client;
 use SimpleXMLElement;
 use Phpoaipmh\Endpoint;
 use Illuminate\Support\Facades\Log;
+use App\Models\MetadataList;
 
 class HarvesterService{
 
@@ -34,11 +35,19 @@ class HarvesterService{
 
     public function harvest(String $route, String $metadataPrefix = "oai_dc"){
         try {
-            
             $client = new Client($route);
             $routeEndpoint = new Endpoint($client);
             $results = $routeEndpoint->listRecords($metadataPrefix);
-            dd($results->next()->metadata->children('oai_dc', 1)->dc->children('dc', 1));
+            
+            $mdlist = new MetadataList();
+            for($i=0; $i<1; $i++)
+            {
+                $item = $results->next()->metadata->children('oai_dc', 1)->dc->children('dc', 1);
+                $mdlist->add($item);
+            }
+            
+            dd($mdlist->get(0)->toArray());
+
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
