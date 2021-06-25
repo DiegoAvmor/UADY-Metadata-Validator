@@ -4,6 +4,7 @@ use App\Services\Validators\{TitleValidator,AuthorValidator,ProjectIdentifierVal
 
 return [
     'ruleset'=>[
+        //Obligatorias
         "Title" =>[
             'description' => "Valida la existencia del titulo en los metadatos",
             'instance' => TitleValidator::getInstance(),
@@ -34,6 +35,7 @@ return [
             'instance' => DateValidator::getInstance(),
             'tag' => 'dc:date'
         ],
+        //Obligatorias cuando apliquen
     ]
 
 ];
