@@ -22,7 +22,6 @@
         </div>
         <div class="top-bar container-lg d-flex mw-100 mx-0 justify-content-between align-items-center bg-primary text-light">
             <h5 class="pt-2 hdln-5">Universidad Autónoma de Yucatán</h5>
-            <i class="fas fa-globe"></i>
         </div>
     </header>
 
@@ -31,13 +30,13 @@
         <div class="container">
             <!-- Grid container-->
             <div class="row">
-                <form class="col-6" id="fileForm">
+                <form class="col-6" id="fileForm" action="{{ action('ValidatorController@harvestURL') }}">
                     <h4 class="border-bottom border-warning">Validador de Metadatos</h4>
                     <div class="my-5">
                         <label for="floatingInput">
                             <h5>OAI-PMH</h5>
                         </label>
-                        <input type="url" class="form-control" id="floatingInput" placeholder="Ejemp: genreric.eprints.org">
+                        <input type="url" class="form-control" id="linkInput" placeholder="Ejemplo: http://redi.uady.mx/oai/request">
                     </div>
                     <div class="mb-3">
                         <label for="xmlTextArea" class="form-label">
@@ -47,14 +46,15 @@
                     </div>
                     <button type="submit" class="btn btn-warning offset-md-9 mt-3">Comprobar</button>
                 </form>
-                <div class="col-5 ml-5 pt-5 pl-5">
+                <div class="col-5 ml-5 pl-5">
                     <!-- verify the padding tho -->
                     <div>
-                        <h4 class="pt-4">Resultados</h4>
+                        <h4>Resultados</h4>
                         <ol class="list-group list-group-numbered">
-                            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Status</li>
-                            <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Content Type</li>
-                            <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>metadatos</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Conexión Extablecida</li>
+                            <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Comprobación de XML</li>
+                            <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Contenido del XML verificado</li>
+                            <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Metadatos Listados</li>
                         </ol>
                     </div>
                     <div class="border-bottom border-warning">
@@ -63,12 +63,6 @@
                         <h6 class="text-center text-dark">Datos Correctos</h6>
                     </div>
                     <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Metadato</th>
-                                <th scope="col">Estado</th>
-                            </tr>
-                        </thead>
                         <tr>
                             <td>dc:title</td>
                             <td><i class="fas fa-check-circle text-success"></i>Correcto</td>
@@ -88,35 +82,35 @@
                 <button type="button" class="btn btn-warning offset-md-10 px-4">Ver más</button>
             </div>
         </div>
-        
+
         <div class="m-5">
             <h3 class="border-bottom border-warning">Más Detalles</h3>
             <table class="table">
                 <thead class="text-center">
                     <tr>
                         <th scope="col">Metadato</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">No. de Depósitos</th>
-                        <th scope="col">Validación</th>
+                        <th scope="col">Tipo<i class="fas fa-info-circle"></i></th>
+                        <th scope="col">Reglas Cumplidas</th>
+                        <th scope="col">Ver Más</th>
                     </tr>
                 </thead>
                 <tr>
                     <td>dc:title</td>
                     <td></td>
                     <td></td>
-                    <td class="text-center"><i class="fas fa-check-circle text-success"></i></td>
+                    <td class="text-center"><i class="fab fa-get-pocket"></i></td>
                 </tr>
                 <tr>
                     <td>Creator</td>
                     <td></td>
                     <td></td>
-                    <td class="text-center"><i class="fas fa-check-circle text-success"></i></td>
+                    <td class="text-center"><i class="fab fa-get-pocket"></i></i></td>
                 </tr>
                 <tr>
                     <td>info:eu-repo</td>
                     <td></td>
                     <td></td>
-                    <td class="text-center"><i class="fas fa-exclamation-circle text-danger"></i></td>
+                    <td class="text-center"><i class="fab fa-get-pocket"></i></i></td>
                 </tr>
             </table>
         </div>
