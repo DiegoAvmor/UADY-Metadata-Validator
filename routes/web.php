@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::prefix('/service')->group(function () {
+    Route::get('/validate', 'ValidatorController@harvestURL')->name('harvest_url');    
+});
+
