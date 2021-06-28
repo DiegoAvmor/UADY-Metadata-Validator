@@ -1,5 +1,5 @@
 <?php
-use App\Services\Validators\{TitleValidator,AuthorValidator,ProjectIdentifierValidator,AccessLevelValidator,LicenseValidator,DateValidator};
+use App\Services\Validators\{TitleValidator,AuthorValidator,ProjectIdentifierValidator,AccessLevelValidator, ContributorValidator, LicenseValidator,DateValidator};
 
 
 return [
@@ -35,7 +35,11 @@ return [
             'instance' => DateValidator::getInstance(),
             'tag' => 'dc:date'
         ],
-        //Obligatorias cuando apliquen
+        "Contribuidor" =>[
+            'description' => "Valida la existencia de un contribuidor",
+            'instance' => ContributorValidator::getInstance(),
+            'tag' => 'dc:contribuitor'
+        ],
     ]
 
 ];
