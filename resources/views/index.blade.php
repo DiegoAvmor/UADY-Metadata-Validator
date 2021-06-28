@@ -30,13 +30,13 @@
         <div class="container">
             <!-- Grid container-->
             <div class="row">
-                <form class="col-6" id="fileForm" action="{{ action('ValidatorController@harvestURL') }}">
+                <form class="col-6 needs-validation" id="fileForm" action="{{ action('ValidatorController@harvestURL') }}" method="get">
                     <h4 class="border-bottom border-warning">Validador de Metadatos</h4>
-                    <div class="my-5">
+                    <div class="my-5 has-validation">
                         <label for="floatingInput">
                             <h5>OAI-PMH</h5>
                         </label>
-                        <input type="url" class="form-control" id="linkInput" placeholder="Ejemplo: http://redi.uady.mx/oai/request">
+                        <input type="url" class="form-control" name="urlXML" placeholder="Ejemplo: http://redi.uady.mx/oai/request" required>
                     </div>
                     <div class="mb-3">
                         <label for="xmlTextArea" class="form-label">

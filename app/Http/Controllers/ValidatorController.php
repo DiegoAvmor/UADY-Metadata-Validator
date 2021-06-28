@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Services\HarvesterService;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\Console\Input\Input;
 
 class ValidatorController extends Controller
 {
@@ -17,7 +18,8 @@ class ValidatorController extends Controller
 
     public function harvestURL(Request $request){
         try {
-            $this->harvesterService->harvest('http://redi.uady.mx/oai/request');
+            $url = $request->input('urlXML');
+            $this->harvesterService->harvest($url);
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
