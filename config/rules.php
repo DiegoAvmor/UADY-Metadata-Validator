@@ -1,5 +1,5 @@
 <?php
-use App\Services\Validators\{TitleValidator,AuthorValidator,ProjectIdentifierValidator,AccessLevelValidator, ContributorValidator, LicenseValidator,DateValidator};
+use App\Services\Validators\{TitleValidator,AuthorValidator,ProjectIdentifierValidator,AccessLevelValidator, ContributorValidator, LicenseValidator,DateValidator, PublicationTypeValidator};
 
 
 return [
@@ -40,6 +40,11 @@ return [
             'instance' => ContributorValidator::getInstance(),
             'tag' => 'dc:contribuitor'
         ],
+        "Tipo de Publicación" => [
+            'description' => "Valida la existencia del tipo de publicación de un recurso",
+            'instance' => PublicationTypeValidator::getInstance(),
+            'tag' => 'dc:type'
+        ]
     ]
 
 ];
