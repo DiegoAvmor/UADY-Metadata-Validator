@@ -1,0 +1,42 @@
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+//Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+body{
+    font-family: $mainFont;
+}
+
+.uady-logo-container{
+    width: 150px;
+    height: 165px;
+    box-shadow: 0px 3px $shadow;
+    clip-path: polygon(0 0, 100% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.container-lg{
+    box-shadow: 0px 5px $shadow;
+}
+
+.top-bar{
+    height: $med;
+}
+
+.fa-check-circle, .fa-exclamation-circle, .fa-get-pocket{
+    font-size: $faSize;
+    margin-right: .3em;
+}
+
+.fa-info-circle{
+    color: $yellow;
+    margin-left: .3em;
+    margin-top: .3em;
+    font-size: $faSize;
+}
