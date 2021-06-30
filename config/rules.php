@@ -44,6 +44,27 @@ return [
             'description' => "Valida la existencia del tipo de publicación de un recurso",
             'instance' => Validators\PublicationTypeValidator::getInstance(),
             'tag' => 'dc:type'
+        ],
+        "Language" => [
+            'description' => "Valida la existencia del recurso lenguage",
+            'instance' => Validators\LanguageValidator::getInstance(),
+            'tag' => 'dc:language'
+        ],
+        //Recomendados
+        "Relation" => [
+            'description' => 'Valida el formato del recurso relation en caso de que exista el tag',
+            'instance' => Validators\RelationValidator::getInstance(),
+            'tag' => 'dc:relation'
+        ],
+        "Coverage" => [
+            'description' => 'Valida el formato del recurso coverage en caso de que exista el tag',
+            'instance' => Validators\CoverageValidator::getInstance(),
+            'tag' => 'dc:coverage'
+        ],
+        "Audience" => [
+            'description' => 'Valida la existencia del recurso audience en caso de que exista el tag',
+            'instance' => Validators\AudienceValidator::getInstance(),
+            'tag' => 'dc:audience'
         ]
     ]
 
