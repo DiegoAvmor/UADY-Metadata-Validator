@@ -54,10 +54,10 @@ class HarvesterService{
     private function validateResource($metadata){
         $responseList = [];
         foreach ($this->rules as $key => $rule) {
-            $message = $rule['instance']->validateMetadata($metadata);
+            $response = $rule['instance']->validateMetadata($metadata);
 
-            if(!empty($message)){
-                $responseList[$key] = $rule['instance']->validateMetadata($metadata);
+            if(!empty($response)){
+                $responseList[$key] = $response;
             }
         }
         return $responseList;
