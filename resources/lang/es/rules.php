@@ -17,6 +17,11 @@ return [
     'title_format' => 'El formato del titulo no se apega al definido por la CONACYT (Título:Subtítulo).',
     'access_level_format' => 'El nivel de acceso definido no se apega a los definidos en el sistema (closedAccess,embargoedAccess,restrictedAccess,openAccess).',
     'licence_format' => 'El recurso no cuenta con una licencia valida.',
-    'date_format' => 'El formato de la fecha no se apega al de la norma ISO-8601'
+    'date_format' => 'El formato de la fecha no se apega al de la norma ISO-8601',
+    'language_format' => 'El formato del lenguaje no se apega al de la norma ISO 639-3',
+    'relation_format' => 'El formato del link no es válido',
+    'relation_content' => 'No existe ningún recurso en el URL presentado',
+    'coverage_format' => 'El formato del coverage no se apega al de la norma ISO 3166 o ISO 15836',
+    'audience_content' => 'No existe el recurso en el catálogo Audience de CONACYT'
 
 ];

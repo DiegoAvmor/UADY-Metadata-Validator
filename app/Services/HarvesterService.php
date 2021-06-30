@@ -31,7 +31,6 @@ class HarvesterService{
             $client = new Client($route);
             $routeEndpoint = new Endpoint($client);
             $results = $routeEndpoint->listRecords($metadataPrefix);
-
             $validationResults = [];
 
             $limit = 0;
@@ -55,7 +54,11 @@ class HarvesterService{
     private function validateResource($metadata){
         $responseList = [];
         foreach ($this->rules as $key => $rule) {
-            $responseList[$key] = $rule['instance']->validateMetadata($metadata);
+            $response = $rule['instance']->validateMetadata($metadata);
+
+            if(!empty($response)){
+                $responseList[$key] = $response;
+            }
         }
         return $responseList;
     }
