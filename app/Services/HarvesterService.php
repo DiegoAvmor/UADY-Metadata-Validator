@@ -43,12 +43,42 @@ class HarvesterService{
                     break;
                 }
             }
-            dd($validationResults);
+            $this->createValidationStatisticsFromArray($validationResults);
+            //dd($validationResults);
             return $validationResults;
 
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
+    }
+
+    private function createValidationStatisticsFromArray($responseArray){
+        $statArray = [];
+        foreach ($responseArray as $response) {
+            foreach ($response as $key => $validationResult) {
+                if(isset($statArray[$key])){
+                    //Se actualiza el contenido de las estadisticas de la regla
+                    $ruleStatistic = $statArray[$key];
+                    if($validationResult->status){
+                        $ruleStatistic->numValid++;
+                    }
+                    $ruleStatistic->total++;
+
+                }else{
+                    //Se crea el elemento de la estadistica de la regla asociada
+                    $ruleStatistic= (object) array();
+                    //Se elimina de los datos de la regla la 'instancia' de la clase de validación
+                    $ruleData = $this->rules[$key];
+                    unset($ruleData['instance']);
+                    $ruleStatistic->data = $ruleData;
+                    $ruleStatistic->numValid = 1;
+                    $ruleStatistic->total = 1;
+                    $statArray[$key] = $ruleStatistic;
+                }
+            }
+        }
+        dd($statArray);
+        return $statArray;
     }
 
     private function validateResource($metadata){
