@@ -43,9 +43,7 @@ class HarvesterService{
                     break;
                 }
             }
-            $this->createValidationStatisticsFromArray($validationResults);
-            //dd($validationResults);
-            return $validationResults;
+            return $this->createValidationStatisticsFromArray($validationResults);
 
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -54,16 +52,19 @@ class HarvesterService{
 
     private function createValidationStatisticsFromArray($responseArray){
         $statArray = [];
-        foreach ($responseArray as $response) {
+        foreach ($responseArray as $item => $response) {
             foreach ($response as $key => $validationResult) {
                 if(isset($statArray[$key])){
                     //Se actualiza el contenido de las estadisticas de la regla
                     $ruleStatistic = $statArray[$key];
                     if($validationResult->status){
                         $ruleStatistic->numValid++;
+                    }else{
+                        //Se adiciona el mensaje de rechazo a la regla
+                        $ruleStatistic->rejectMessages[] = trans('rules.reject_msg_template', ['id'=> $item, 'message' => $validationResult->message ]);
                     }
                     $ruleStatistic->total++;
-
+                    $ruleStatistic->generalStatus = ($ruleStatistic->numValid != $ruleStatistic->total);
                 }else{
                     //Se crea el elemento de la estadistica de la regla asociada
                     $ruleStatistic= (object) array();
@@ -73,19 +74,23 @@ class HarvesterService{
                     $ruleStatistic->data = $ruleData;
                     $ruleStatistic->numValid = 1;
                     $ruleStatistic->total = 1;
+                    $ruleStatistic->generalStatus = false;
                     $statArray[$key] = $ruleStatistic;
                 }
             }
         }
-        dd($statArray);
-        return $statArray;
+        //Se envuelve las estadisticas de las reglas y el consenso general de validación en un objeto
+        $totalCount = count($statArray);
+        $data = (object) array();
+        $data->statistics = $statArray;
+        $data->averageSuccess = ($totalCount - count(array_filter( array_column($statArray,'generalStatus')))) * 100 / $totalCount;
+        return $data;
     }
 
     private function validateResource($metadata){
         $responseList = [];
         foreach ($this->rules as $key => $rule) {
             $response = $rule['instance']->validateMetadata($metadata);
-
             if(!empty($response)){
                 $responseList[$key] = $response;
             }

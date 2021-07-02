@@ -45,7 +45,7 @@ return [
             'description' => "Valida la existencia de un contribuidor",
             'instance' => Validators\ContributorValidator::getInstance(),
             'ruleType' => 'M',
-            'tag' => 'dc:contribuitor'
+            'tag' => 'dc:contributor'
         ],
         "Tipo de Publicación" => [
             'description' => "Valida la existencia del tipo de publicación de un recurso",

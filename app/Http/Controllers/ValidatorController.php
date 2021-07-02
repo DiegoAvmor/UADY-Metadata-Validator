@@ -20,7 +20,7 @@ class ValidatorController extends Controller
         try {
             $url = $request->input('urlXML');
             $data = $this->harvesterService->harvest($url);
-            return view('index')->with('data',$data);
+            return view('index', ['data'=>$data]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
