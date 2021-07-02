@@ -19,7 +19,8 @@ class ValidatorController extends Controller
     public function harvestURL(Request $request){
         try {
             $url = $request->input('urlXML');
-            $this->harvesterService->harvest($url);
+            $data = $this->harvesterService->harvest($url);
+            return view('index')->with('data',$data);
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
