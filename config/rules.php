@@ -63,6 +63,7 @@ return [
         "Fecha de finalización de Embargo" =>[
             'description' => "Valida la fecha de finalización de embargo cuando el nivel de acceso es 'EmbargoedAccess'",
             'instance' => Validators\EmbargoEndDateValidator::getInstance(),
+            'ruleType' => 'MA',
             'rulePredecesor' => 'Access Level',
             'tag' => 'dc:date'
         ],
