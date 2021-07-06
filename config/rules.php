@@ -50,6 +50,13 @@ return [
             'instance' => Validators\LanguageValidator::getInstance(),
             'tag' => 'dc:language'
         ],
+        //Obligatorios cuando aplican
+        "Fecha de finalización de Embargo" =>[
+            'description' => "Valida la fecha de finalización de embargo cuando el nivel de acceso es 'EmbargoedAccess'",
+            'instance' => Validators\EmbargoEndDateValidator::getInstance(),
+            'rulePredecesor' => 'Access Level',
+            'tag' => 'dc:date'
+        ],
         //Recomendados
         "Relation" => [
             'description' => 'Valida el formato del recurso relation en caso de que exista el tag',

@@ -54,10 +54,21 @@ class HarvesterService{
     private function validateResource($metadata){
         $responseList = [];
         foreach ($this->rules as $key => $rule) {
-            $response = $rule['instance']->validateMetadata($metadata);
 
-            if(!empty($response)){
-                $responseList[$key] = $response;
+            $enforceRule = true;
+
+            //Se valida para el caso de reglas MA (Obligatoria cuando aplique) si su regla predecesor fue exitosa
+            if(array_key_exists('rulePredecesor',$rule)){
+                //El estatus de la regla predecesora dictara si se aplica la regla MA
+                $enforceRule = $responseList[$rule['rulePredecesor']]->status;
+            }
+
+            if($enforceRule){
+                $response = $rule['instance']->validateMetadata($metadata);
+
+                if(!empty($response)){
+                    $responseList[$key] = $response;
+                }
             }
         }
         return $responseList;
