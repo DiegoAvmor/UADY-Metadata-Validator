@@ -36,8 +36,8 @@ class HarvesterService extends ValidateService {
                     break;
                 }
             }
-            dd($validationResults);
-            return $validationResults;
+            return $this->createValidationStatisticsFromArray($validationResults);
+
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
