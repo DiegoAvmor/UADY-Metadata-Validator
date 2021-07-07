@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/validator', function(){
+    return view('validator');
+});
+
 Route::prefix('/service')->group(function () {
     Route::get('/validate', 'ValidatorController@harvestURL')->name('harvest_url');    
 });
