@@ -14,6 +14,7 @@ return [
 
     'exists' => 'El metadato :tag no existe.',
     'valid' => 'El metadato fue validado correctamente.',
+    'reject_msg_template' => "Recurso :id ':message'",
     'title_format' => 'El formato del titulo no se apega al definido por la CONACYT (Título:Subtítulo).',
     'access_level_format' => 'El nivel de acceso definido no se apega a los definidos en el sistema (closedAccess,embargoedAccess,restrictedAccess,openAccess).',
     'licence_format' => 'El recurso no cuenta con una licencia valida.',

@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Services\HarvesterService;
 use Illuminate\Support\Facades\Log;
-use Symfony\Component\Console\Input\Input;
+
 
 class ValidatorController extends Controller
 {
@@ -17,13 +17,24 @@ class ValidatorController extends Controller
     }
 
     public function harvestURL(Request $request){
-        try {
+        try { 
             $url = $request->input('urlXML');
-            $this->harvesterService->harvest($url);
+            $data = $this->harvesterService->harvest($url);
+            return view('validator', ['data' => $data]);
+        } catch (Exception $e) {
+            return back()->withErrors('Failed', $e->getMessage()); 
+        }
+    }
+
+    public function validateXML(Request $request){
+        try { 
+            $xmlInput = $request->query('xmlInput');
+            //TODO: Implement xml parse and validation
+            return back();
         } catch (Exception $e) {
             Log::error($e->getMessage());
+            return back()->withErrors('Failed', $e->getMessage()); 
         }
-        return view('welcome');
     }
 
 }
