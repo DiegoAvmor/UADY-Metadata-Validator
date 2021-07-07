@@ -25,7 +25,7 @@ class LanguageValidator extends RuleValidator{
                 return $this->buildValidationResponse($matches, $matches? trans('rules.valid') : trans('rules.language_format'));
             }
 
-            return $this->buildValidationResponse(false, trans('rules.exists'));
+            return $this->buildValidationResponse(false, trans('rules.exists',['tag'=>'language']));
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return $this->buildValidationResponse(false, $exception->getMessage());
