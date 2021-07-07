@@ -21,7 +21,7 @@
     <div>
         <table class="table">
             @foreach ($data->statistics as $ruleKeyName => $qualityResult)
-            <tr>
+            @if($loop->iteration < 4) <tr>
                 <td>{{$ruleKeyName}}</td>
                 <td>
                     @if ($qualityResult->generalStatus)
@@ -30,10 +30,11 @@
                     <i class="fas fa-check-circle text-success"></i>Correcto
                     @endif
                 </td>
-            </tr>
-            @endforeach
+                </tr>
+                @endif
+                @endforeach
         </table>
-        <button type="button" class="btn btn-warning px-4 float-right">Ver más</button>
+        <button type="button" class="btn btn-warning px-4 float-right" id="showBtton">Mostrar más</button>
     </div>
 </div>
 @endisset
@@ -41,7 +42,7 @@
 @section('tableResults')
 <!-- table details section -->
 @isset($data)
-<div class="m-5">
+<div class="m-5" id="tableContainer">
     <h3 class="border-bottom border-warning">Más Detalles</h3>
     <table class="table">
         <thead class="text-center">

@@ -26,7 +26,7 @@
     </header>
 
     <main>
-        <div class="container">
+        <div class="container mb-3">
             <!-- Grid container-->
             <div class="row">
                 <form class="col needs-validation" id="fileForm" action="{{ action('ValidatorController@harvestURL') }}" method="get">

@@ -3,6 +3,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~mdb-ui-kit/css/mdb.min.css';
 
 //Font Awesome
 @import '~@fortawesome/fontawesome-free/scss/brands';
@@ -39,4 +40,8 @@ body{
     margin-left: .3em;
     margin-top: .3em;
     font-size: $faSize;
+}
+
+#tableContainer{
+    display: none;
 }
