@@ -29,22 +29,27 @@
         <div class="container mb-3">
             <!-- Grid container-->
             <div class="row">
-                <form class="col needs-validation" id="fileForm" action="{{ action('ValidatorController@harvestURL') }}" method="get">
-                    <h4 class="border-bottom border-warning">Validador de Metadatos</h4>
-                    <div class="my-5 has-validation">
-                        <label for="floatingInput">
-                            <h5>OAI-PMH</h5>
-                        </label>
-                        <input type="url" class="form-control" name="urlXML" placeholder="Ejemplo: http://redi.uady.mx/oai/request" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="xmlTextArea" class="form-label">
-                            <h5>Validar XML</h5>
-                        </label>
-                        <textarea class="form-control" id="xmlTextArea" rows="7"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-warning float-right mt-3">Comprobar</button>
-                </form>
+                <div class="col">
+                    <form class="col needs-validation" id="fileForm" action="{{ route('harvest_url') }}" method="get">
+                        <h4 class="border-bottom border-warning">Validador de Metadatos</h4>
+                        <div class="mb-5 has-validation">
+                            <label for="floatingInput">
+                                <h5>OAI-PMH</h5>
+                            </label>
+                            <input type="url" class="form-control" name="urlXML" placeholder="Ejemplo: http://redi.uady.mx/oai/request" required>
+                            <button type="submit" class="btn btn-warning float-right mt-3">Comprobar</button>
+                        </div>
+                    </form>
+                    <form class="col needs-validation" id="urlXMLValidator" action="{{ route('validate_xml') }}" method="get">
+                        <div class="mb-5">
+                            <label for="xmlTextArea" class="form-label">
+                                <h5>Validar XML</h5>
+                            </label>
+                            <textarea name="xmlInput" class="form-control" id="xmlTextArea" rows="7"></textarea>
+                            <button type="submit" class="btn btn-warning float-right mt-3">Comprobar</button>
+                        </div>
+                    </form>
+                </div>
                 @yield('generalSumary')
             </div>
         </div>

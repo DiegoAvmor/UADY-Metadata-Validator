@@ -82,7 +82,7 @@ class HarvesterService{
         //Se envuelve las estadisticas de las reglas y el consenso general de validación en un objeto
         $totalCount = count($statArray);
         $data = (object) array();
-        $data->statistics = $statArray;
+        $data->statistics = collect($statArray);
         $data->averageSuccess = ($totalCount - count(array_filter( array_column($statArray,'generalStatus')))) * 100 / $totalCount;
         return $data;
     }
