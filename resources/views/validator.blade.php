@@ -20,9 +20,9 @@
     </div>
     <div>
         <table class="table">
-            @foreach ($data->statistics as $qualityResult)
+            @foreach ($data->statistics as $ruleKeyName => $qualityResult)
             <tr>
-                <td>{{$qualityResult->data['tag']}}</td>
+                <td>{{$ruleKeyName}}</td>
                 <td>
                     @if ($qualityResult->generalStatus)
                     <i class="fas fa-exclamation-circle text-danger"></i>Error
@@ -46,14 +46,16 @@
     <table class="table">
         <thead class="text-center">
             <tr>
-                <th scope="col">Metadato</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Tag</th>
                 <th scope="col">Tipo<i class="fas fa-info-circle" data-bs-toggle="tooltip"></i></th>
                 <th scope="col">Reglas Cumplidas</th>
                 <th scope="col">Ver Más</th>
             </tr>
         </thead>
-        @foreach ($data->statistics as $qualityResult)
+        @foreach ($data->statistics as $ruleKeyName => $qualityResult)
         <tr>
+            <td class="text-center">{{$ruleKeyName}}</td>
             <td class="text-center">{{$qualityResult->data['tag']}}</td>
             <td class="text-center">{{$qualityResult->data['ruleType']}}</td>
             <td class="text-center">{{$qualityResult->numValid ."/". $qualityResult->total}}</td>
