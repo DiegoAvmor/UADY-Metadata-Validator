@@ -30,7 +30,7 @@
     <div>
         <table class="table">
             @foreach ($data->statistics as $ruleKeyName => $qualityResult)
-                
+                @if($loop->iteration < 5)
                 <tr>
                     <td>{{$ruleKeyName}}</td>
                     <td>
@@ -41,7 +41,7 @@
                         @endif
                     </td>
                 </tr>
-                
+                @endif
             @endforeach
         </table>
         <button type="button" class="btn btn-warning px-4 float-right" id="showBtton">Ver Detalles</button>
