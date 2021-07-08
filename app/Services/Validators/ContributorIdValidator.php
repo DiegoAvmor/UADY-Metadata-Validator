@@ -18,6 +18,7 @@ class ContributorIdValidator extends RuleValidator{
 
     public function validateMetadata($content){
         try {
+            //TODO: Use CONACYT webservice to validate the contributor Id
             $contributorTag = $content->contributor;
             $isValid = $this->validateExistence($contributorTag);
             return $this->buildValidationResponse($isValid, $isValid? trans('rules.valid') : trans('rules.exists',['tag'=>'contributor']));
