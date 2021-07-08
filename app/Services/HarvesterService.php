@@ -64,7 +64,6 @@ class HarvesterService{
                         $ruleStatistic->rejectMessages[] = trans('rules.reject_msg_template', ['id'=> $item, 'message' => $validationResult->message ]);
                     }
                     $ruleStatistic->total++;
-                    $ruleStatistic->generalStatus = ($ruleStatistic->numValid != $ruleStatistic->total);
                 }else{
                     //Se crea el elemento de la estadistica de la regla asociada
                     $ruleStatistic= (object) array();
@@ -78,6 +77,10 @@ class HarvesterService{
                     $statArray[$key] = $ruleStatistic;
                 }
             }
+        }
+        //Se obtiene el estatus general de cada metadato (true si todos los recursos pasaron respecto a ese metadoa, false en caso contrario)
+        foreach ($statArray as $rule) {
+            $rule->generalStatus = ($rule->numValid != $rule->total);
         }
         //Se envuelve las estadisticas de las reglas y el consenso general de validación en un objeto
         $totalCount = count($statArray);
