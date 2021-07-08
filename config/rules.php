@@ -84,6 +84,27 @@ return [
             'tag' => 'dc:date',
             'qualityTagValue' => 2
         ],
+        "Dataset Reference" =>[
+            'description' => "Valida los enlaces a los conjuntos de datos que esta publicación hace referencia",
+            'instance' => Validators\DatasetReferenceValidator::getInstance(),
+            'ruleType' => 'MA',
+            'tag' => 'dc:relation',
+            'qualityTagValue' => 2
+        ],
+        "Subject" =>[
+            'description' => "Valida la existencia de keywords o clasificaciones",
+            'instance' => Validators\SubjectValidator::getInstance(),
+            'ruleType' => 'MA',
+            'tag' => 'dc:subject',
+            'qualityTagValue' => 2
+        ],
+        "Description" =>[
+            'description' => "Valida la existencia de texto para la descripción del contenido",
+            'instance' => Validators\DescriptionValidator::getInstance(),
+            'ruleType' => 'MA',
+            'tag' => 'dc:description',
+            'qualityTagValue' => 2
+        ],
         "Id Contribuidor" => [
             'description' => "Valida que existe un id para el contribuidor",
             'instance' => Validators\ContributorIdValidator::getInstance(),
@@ -102,6 +123,13 @@ return [
         "Relation" => [
             'description' => 'Valida el formato del recurso relation en caso de que exista el tag',
             'instance' => Validators\RelationValidator::getInstance(),
+            'ruleType' => 'R',
+            'tag' => 'dc:relation',
+            'qualityTagValue' => 1
+        ],
+        "Publication Reference" => [
+            'description' => "Valida los enlaces a los que esta publicación hace referencia",
+            'instance' => Validators\PublicationReferenceValidator::getInstance(),
             'ruleType' => 'R',
             'tag' => 'dc:relation',
             'qualityTagValue' => 1
