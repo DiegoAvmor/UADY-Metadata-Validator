@@ -7,7 +7,6 @@ use App\Services\QualityService;
 class ValidatorService {
     private $qualityService;
     private $rules = [];
-    private $tagValues = [];
 
     function __construct(){
         //Se realiza la carga de las reglas

@@ -22,32 +22,19 @@ class QualityService {
 
     private function setTagValues() {
         //Se inicializa el valor para cada una de las reglas
-        $this->tagValues = [
-            "Title" => 2,
-            "Autor" => 2,
-            "Proyect Identifier" => 2,
-            "Access Level" => 2,
-            "License Condition" => 2,
-            "Fecha de Publicación" => 2,
-            "Contribuidor" => 2,
-            "Tipo de Publicación" => 2,
-            "Language" => 1,
-            "Fecha de finalización de Embargo" => 2,
-            "Relation" => 1,
-            "Coverage" => 1,
-            "Audience" => 1
-        ];
+        foreach ($this->rules as $ruleKey => $rule) {
+            $this->tagValues[$ruleKey] = $rule["qualityTagValue"];
+        }
     }
 
     public function getQualityResults($validatorsResults) {
 
         foreach($validatorsResults as $item => $record) {
-            $this->tagInfo[] = $this->analyzeRecord($item, $record);
+            $this->analyzeRecord($item, $record);
         }
         //Se elimina cualquier campo vacío
         $this->tagInfo = array_filter($this->tagInfo);
 
-        $totalCount = count($this->tagInfo);
         $data = (object) array();
         $data->statistics = collect($this->tagInfo);
         $data->averageSuccess = $this->generateAverage();
@@ -109,8 +96,6 @@ class QualityService {
             $totalCount += ($tagContent->total * $this->tagValues[$tagName]);
         }
 
-        $average = ($totalNumValid * 100) / $totalCount;
-
-        return $average;
+        return ($totalNumValid * 100) / $totalCount;
     }
 }
