@@ -23,6 +23,7 @@ class ValidatorController extends Controller
         try { 
             $url = $request->input('urlXML');
             $data = $this->harvesterService->harvest($url);
+            
             return view('validator', ['data' => $data]);
         } catch (Exception $e) {
             return back()->withErrors('Failed', $e->getMessage()); 
@@ -32,8 +33,13 @@ class ValidatorController extends Controller
     public function validateXML(Request $request){
         try { 
             $xmlInput = $request->query('xmlInput');
-            $this->XMLService->validateXML($xmlInput);
-            return back();
+            $data = $this->XMLService->validateXML($xmlInput);
+
+            if(empty($data) || $data == null) {
+                return back()->withErrors('Failed', 'Invalid XML');
+            }
+
+            return view('validator', ['data' => $data]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return back()->withErrors('Failed', $e->getMessage()); 
