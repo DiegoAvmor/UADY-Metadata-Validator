@@ -41,7 +41,7 @@ return [
             'ruleType' => 'M',
             'tag' => 'dc:date'
         ],
-        "Contribuidor" =>[
+        "Contribuidor" => [
             'description' => "Valida la existencia de un contribuidor",
             'instance' => Validators\ContributorValidator::getInstance(),
             'ruleType' => 'M',
@@ -59,6 +59,12 @@ return [
             'ruleType' => 'M',
             'tag' => 'dc:language'
         ],
+        "Publication Date" => [
+            'description' => "Valida el formato y existencia de la fecha de publicación",
+            'instance' => Validators\PublicationDateValidator::getInstance(),
+            'ruleType' => 'M',
+            'tag' => 'dc:date'
+        ],
         //Obligatorios cuando aplican
         "Fecha de finalización de Embargo" =>[
             'description' => "Valida la fecha de finalización de embargo cuando el nivel de acceso es 'EmbargoedAccess'",
@@ -66,6 +72,18 @@ return [
             'ruleType' => 'MA',
             'rulePredecesor' => 'Access Level',
             'tag' => 'dc:date'
+        ],
+        "Id Contribuidor" => [
+            'description' => "Valida que existe un id para el contribuidor",
+            'instance' => Validators\ContributorIdValidator::getInstance(),
+            'ruleType' => 'MA',
+            'tag' => 'dc:contributor'
+        ],
+        "Publisher" => [
+            'description' => "Valida que existe un editor",
+            'instance' => Validators\PublisherValidator::getInstance(),
+            'ruleType' => 'MA',
+            'tag' => 'dc:publisher'
         ],
         //Recomendados
         "Relation" => [
@@ -85,6 +103,12 @@ return [
             'instance' => Validators\AudienceValidator::getInstance(),
             'ruleType' => 'R',
             'tag' => 'dc:audience'
+        ],
+        "Publication Type" => [
+            'description' => 'Valida la existencia y el formato de la versión de la publicación',
+            'instance' => Validators\PublicationVersionValidator::getInstance(),
+            'ruleType' => 'R',
+            'tag' => 'dc:type'
         ]
     ]
 
