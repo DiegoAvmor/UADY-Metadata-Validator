@@ -30,18 +30,19 @@
     <div>
         <table class="table">
             @foreach ($data->statistics as $ruleKeyName => $qualityResult)
-            @if($loop->iteration < 5) <tr>
-                <td>{{$ruleKeyName}}</td>
-                <td>
-                    @if ($qualityResult->generalStatus)
-                    <i class="fas fa-exclamation-circle text-danger"></i>Error
-                    @else
-                    <i class="fas fa-check-circle text-success"></i>Correcto
-                    @endif
-                </td>
+                
+                <tr>
+                    <td>{{$ruleKeyName}}</td>
+                    <td>
+                        @if ($qualityResult->generalStatus)
+                        <i class="fas fa-check-circle text-success"></i>Correcto
+                        @else
+                        <i class="fas fa-exclamation-circle text-danger"></i>Error
+                        @endif
+                    </td>
                 </tr>
-                @endif
-                @endforeach
+                
+            @endforeach
         </table>
         <button type="button" class="btn btn-warning px-4 float-right" id="showBtton">Ver Detalles</button>
     </div>
