@@ -6,12 +6,21 @@
     <!-- verify the padding tho -->
     <div>
         <h4>Resultados</h4>
+        @if (isset($connectionErrors))
         <ol class="list-group list-group-numbered">
             <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Conexión Extablecida</li>
             <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Comprobación de XML</li>
             <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Contenido del XML verificado</li>
             <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Metadatos Listados</li>
         </ol>
+        @else
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Conexión Extablecida</li>
+            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Comprobación de XML</li>
+            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Contenido del XML verificado</li>
+            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Metadatos Listados</li>
+        </ol>
+        @endif
     </div>
     <div class="border-bottom border-warning">
         <h5 class="mt-5 text-center">Resultados de Validación de Datos</h5>
