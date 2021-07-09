@@ -12,7 +12,7 @@ return [
             'tag' => 'dc:title',
             'qualityTagValue' => 2
         ],
-        "Autor" =>[
+        "Author" =>[
             'description' => "Valida la existencia del autor en los metadatos",
             'instance' => Validators\AuthorValidator::getInstance(),
             'ruleType' => 'M',
@@ -40,21 +40,21 @@ return [
             'tag' => 'dc:rights',
             'qualityTagValue' => 2
         ],
-        "Fecha de Publicación" =>[
+        "Publication Date" =>[
             'description' => "Valida la condición de licencia del recurso",
             'instance' => Validators\DateValidator::getInstance(),
             'ruleType' => 'M',
             'tag' => 'dc:date',
             'qualityTagValue' => 2
         ],
-        "Contribuidor" => [
+        "Contributor" => [
             'description' => "Valida la existencia de un contribuidor",
             'instance' => Validators\ContributorValidator::getInstance(),
             'ruleType' => 'M',
             'tag' => 'dc:contributor',
             'qualityTagValue' => 2
         ],
-        "Tipo de Publicación" => [
+        "Publication Type" => [
             'description' => "Valida la existencia del tipo de publicación de un recurso",
             'instance' => Validators\PublicationTypeValidator::getInstance(),
             'ruleType' => 'M',
@@ -75,7 +75,7 @@ return [
             'tag' => 'dc:date',
             'qualityTagValue' => 2
         ],
-        "Identificador del Recurso" => [
+        "Resource Identifier" => [
             'description' => 'Valida la existencia del identificador del recurso',
             'instance' => Validators\ResourceIdentifierValidator::getInstance(),
             'ruleType' => 'M',
@@ -83,7 +83,7 @@ return [
             'qualityTagValue' => 2
         ],
         //Obligatorios cuando aplican
-        "Fecha de finalización de Embargo" =>[
+        "Embargo End Date" =>[
             'description' => "Valida la fecha de finalización de embargo cuando el nivel de acceso es 'EmbargoedAccess'",
             'instance' => Validators\EmbargoEndDateValidator::getInstance(),
             'ruleType' => 'MA',
@@ -112,7 +112,7 @@ return [
             'tag' => 'dc:description',
             'qualityTagValue' => 2
         ],
-        "Id Contribuidor" => [
+        "Contributor Id" => [
             'description' => "Valida que existe un id para el contribuidor",
             'instance' => Validators\ContributorIdValidator::getInstance(),
             'ruleType' => 'MA',
