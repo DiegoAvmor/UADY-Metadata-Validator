@@ -75,6 +75,13 @@ return [
             'tag' => 'dc:date',
             'qualityTagValue' => 2
         ],
+        "Identificador del Recurso" => [
+            'description' => 'Valida la existencia del identificador del recurso',
+            'instance' => Validators\ResourceIdentifierValidator::getInstance(),
+            'ruleType' => 'M',
+            'tag' => 'dc:indentifier',
+            'qualityTagValue' => 2
+        ],
         //Obligatorios cuando aplican
         "Fecha de finalización de Embargo" =>[
             'description' => "Valida la fecha de finalización de embargo cuando el nivel de acceso es 'EmbargoedAccess'",
@@ -148,13 +155,35 @@ return [
             'tag' => 'dc:audience',
             'qualityTagValue' => 1
         ],
-        "Publication Type" => [
+        "Publication Version" => [
             'description' => 'Valida la existencia y el formato de la versión de la publicación',
             'instance' => Validators\PublicationVersionValidator::getInstance(),
             'ruleType' => 'R',
             'tag' => 'dc:type',
             'qualityTagValue' => 1
+        ],
+        "Publication Identifier" => [
+            'description' => 'Valida la existencia y el formato del identificador de la versión publicada del recurso',
+            'instance' => Validators\PublicationIdentificationValidator::getInstance(),
+            'ruleType' => 'R',
+            'tag' => 'dc:type',
+            'qualityTagValue' => 1
+        ],
+        "Format" => [
+            'description' => 'Valida la existencia del formato del recurso',
+            'instance' => Validators\FormatValidator::getInstance(),
+            'ruleType' => 'R',
+            'tag' => 'dc:format',
+            'qualityTagValue' => 1
+        ],
+        "Source" => [
+            'description' => 'Valida la existencia de las fuentes de las que será parte el recurso',
+            'instance' => Validators\SourceValidator::getInstance(),
+            'ruleType' => 'R',
+            'tag' => 'dc:source',
+            'qualityTagValue' => 1
         ]
+
     ]
 
 ];
