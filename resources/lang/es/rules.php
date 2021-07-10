@@ -24,9 +24,6 @@ return [
     'relation_content' => 'No existe ningún recurso en el URL presentado',
     'coverage_format' => 'El formato del coverage no se apega al de la norma ISO 3166 o ISO 15836',
     'audience_content' => 'No existe el recurso en el catálogo Audience de CONACYT',
-    'resourceId_format' => 'El formato del identificador del recurso no es válido',
-    'source_format' => 'La fuente no puede estar vacía cuando se incluye el metadato',
-    'format_content' => 'El formato no debe estar vacío cuando es incluido como metadato',
-    'publicationId_format' => 'El identificador de la publicación no puede estar vacío cuando se incluye'
+    'resourceId_format' => 'El formato del identificador del recurso no es válido'
 
 ];
