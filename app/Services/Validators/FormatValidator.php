@@ -21,13 +21,13 @@ class FormatValidator extends RuleValidator{
         try{
             $formatTag= $content->format;
 
-            if ($this->validateExistence($formatTag)){
-                $matches = (bool) empty((string) $formatTag);
-                return $this->buildValidationResponse($matches, $matches ? trans('rules.valid'): trans('rules.format_content'));
-                
+            if(!$this->validateExistence($formatTag)) {
+                return;
             }
-            return $this->buildValidationResponse(true, trans('rules.exists', ['tag' => 'format']));
 
+            $matches = (bool) empty((string) $formatTag);
+            return $this->buildValidationResponse(!$matches, !$matches ? trans('rules.valid'): trans('rules.format_content'));
+ 
         }catch (Exception $exception){
             Log::error($exception->getMessage());
             return $this->buildValidationResponse(false, $exception->getMessage());

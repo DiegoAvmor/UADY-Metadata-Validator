@@ -21,12 +21,12 @@ class SourceValidator extends RuleValidator{
         try{
             $sourceTag= $content->source;
 
-            if ($this->validateExistence($sourceTag)){
-                $matches = (bool) empty((string)$sourceTag);
-                return $this->buildValidationResponse($matches, $matches ? trans('rules.valid'): trans('rules.source_format'));
-                
+            if(!$this->validateExistence($sourceTag)) {
+                return;
             }
-            return $this->buildValidationResponse(true, trans('rules.exists', ['tag' => 'source']));
+
+            $matches = (bool) empty((string)$sourceTag);
+            return $this->buildValidationResponse( !$matches, !$matches ? trans('rules.valid'): trans('rules.source_format'));
 
         }catch (Exception $exception){
             Log::error($exception->getMessage());

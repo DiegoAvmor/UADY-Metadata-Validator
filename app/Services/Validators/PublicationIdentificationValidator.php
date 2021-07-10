@@ -21,12 +21,12 @@ class PublicationIdentificationValidator extends RuleValidator{
         try{
             $publicationIdTag= $content->type;
 
-            if ($this->validateExistence($publicationIdTag)){
-                $matches = (bool) empty((string)$publicationIdTag);
-                return $this->buildValidationResponse($matches, $matches ? trans('rules.valid'): trans('rules.publicationId_format'));
-                
+            if(!$this->validateExistence($publicationIdTag)) {
+                return;
             }
-            return $this->buildValidationResponse(true, trans('rules.exists', ['tag' => 'type']));
+
+            $matches = (bool) empty((string)$publicationIdTag);
+            return $this->buildValidationResponse(!$matches, !$matches ? trans('rules.valid'): trans('rules.publicationId_format'));
 
         }catch (Exception $exception){
             Log::error($exception->getMessage());
