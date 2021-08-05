@@ -23,6 +23,6 @@ Route::get('/validator', function(){
 
 Route::prefix('/service')->group(function () {
     Route::get('/validate', 'ValidatorController@harvestURL')->name('harvest_url');
-    Route::get('/validateXML','ValidatorController@validateXML')->name('validate_xml');
+    Route::post('/validateXML','ValidatorController@validateXML')->name('validate_xml');
 });
 

@@ -40,7 +40,8 @@
                             <button type="submit" class="btn btn-warning float-right mt-3">Comprobar</button>
                         </div>
                     </form>
-                    <form class="col needs-validation" id="urlXMLValidator" action="{{ route('validate_xml') }}" method="get">
+                    <form class="col needs-validation" id="urlXMLValidator" action="{{ route('validate_xml') }}" method="post">
+                        @csrf
                         <div class="mb-5">
                             <label for="xmlTextArea" class="form-label">
                                 <h5>Validar XML</h5>

@@ -32,7 +32,7 @@ class ValidatorController extends Controller
 
     public function validateXML(Request $request){
         try { 
-            $xmlInput = $request->query('xmlInput');
+            $xmlInput = $request->input('xmlInput');
             $data = $this->XMLService->validateXML($xmlInput);
 
             if(empty($data) || $data == null) {
