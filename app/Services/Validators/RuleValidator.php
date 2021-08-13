@@ -8,10 +8,13 @@ abstract class RuleValidator{
         return (isset($content) && !empty((string) $content));
     }
 
-    function buildValidationResponse(bool $status, string $message){
+    function buildValidationResponse(bool $status, string $message, $aditionalData = null){
         $response = (object) array();
         $response->status = $status;
         $response->message = $message;
+        if(isset($aditionalData)){
+            $response->aditionalData = $aditionalData;
+        }
         return $response;
     }
 
