@@ -59,6 +59,7 @@
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Tag</th>
+                <th scope="col">Estatus</th>
                 <th scope="col">Tipo<i class="fas fa-info-circle" data-bs-toggle="tooltip"></i></th>
                 <th scope="col">Reglas Cumplidas</th>
                 <th scope="col">Ver Más</th>
@@ -68,6 +69,7 @@
         <tr>
             <td class="text-center">{{$ruleKeyName}}</td>
             <td class="text-center">{{$qualityResult->data['tag']}}</td>
+            <td class="text-center">{!! $qualityResult->generalStatus ? '<i class="fas fa-check-circle text-success"></i>' : '<i class="fas fa-exclamation-circle text-danger"></i>' !!}</td>
             <td class="text-center">{{$qualityResult->data['ruleType']}}</td>
             <td class="text-center">{{$qualityResult->numValid ."/". $qualityResult->total}}</td>
             <td class="text-center"><i class="fab fa-get-pocket"></i></td>
