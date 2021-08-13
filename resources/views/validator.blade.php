@@ -1,4 +1,5 @@
 @extends('index')
+@include('modal')
 
 @section('generalSumary')
 @isset($data)
@@ -70,7 +71,18 @@
             <td class="text-center">{{$qualityResult->data['tag']}}</td>
             <td class="text-center">{{$qualityResult->data['ruleType']}}</td>
             <td class="text-center">{{$qualityResult->numValid ."/". $qualityResult->total}}</td>
-            <td class="text-center"><i class="fab fa-get-pocket"></i></td>
+            <td class="text-center">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary-outline modalInformation" data-toggle="modal" data-target="#metadataModal" 
+                value='{    
+                    "ruleKeyName" : "{{ $ruleKeyName }}", 
+                    "description" : "{{ $qualityResult->data['description'] }}",
+                    "rejectMessages" : "{{ !empty($qualityResult->rejectMessages) ? implode(",", $qualityResult->rejectMessages)  : "" }}"
+                }'>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                @yield('modal_layout')
+            </td>
         </tr>
         @endforeach
     </table>
