@@ -27,6 +27,7 @@ return [
     'resourceId_format' => 'El formato del identificador del recurso no es válido',
     'source_format' => 'La fuente no puede estar vacía cuando se incluye el metadato',
     'format_content' => 'El formato no debe estar vacío cuando es incluido como metadato',
-    'publicationId_format' => 'El identificador de la publicación no puede estar vacío cuando se incluye'
+    'publicationId_format' => 'El identificador de la publicación no puede estar vacío cuando se incluye',
+    'type' => 'El tipo de versión de la publicación no existe'
 
 ];
