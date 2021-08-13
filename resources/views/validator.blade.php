@@ -24,25 +24,21 @@
     </div>
     <div class="border-bottom border-warning">
         <h5 class="mt-5 text-center">Resultados de Validación de Datos</h5>
-        <h5 class="mt-3 text-center text-warning" id="percentResults">{{ number_format($data->averageSuccess,2)}}%</h5>
+        <h5 class="mt-3 text-center text-warning" id="percentResults">{{ number_format($data->generalQualityStatistics->averageSuccess,2)}}%</h5>
         <h6 class="text-center text-dark">Datos Correctos</h6>
     </div>
     <div>
         <table class="table">
-            @foreach ($data->statistics as $ruleKeyName => $qualityResult)
-                @if($loop->iteration < 5)
-                <tr>
-                    <td>{{$ruleKeyName}}</td>
-                    <td>
-                        @if ($qualityResult->generalStatus)
-                        <i class="fas fa-check-circle text-success"></i>Correcto
-                        @else
-                        <i class="fas fa-exclamation-circle text-danger"></i>Error
-                        @endif
-                    </td>
-                </tr>
-                @endif
-            @endforeach
+        <thead class="text-center">
+            <tr>
+                <th scope="col">Número de metadatos correctos</th>
+                <th scope="col">Número de metadatos incorrectos</th>
+            </tr>
+        </thead>
+        <tr>
+            <td class="text-center">{{$data->generalQualityStatistics->successNumber}}</td>
+            <td class="text-center">{{$data->generalQualityStatistics->errorNumber}}</td>
+        </tr>
         </table>
         <button type="button" class="btn btn-warning px-4 float-right" id="showBtton">Ver Detalles</button>
     </div>

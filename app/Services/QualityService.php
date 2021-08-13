@@ -37,7 +37,7 @@ class QualityService {
 
         $data = (object) array();
         $data->statistics = collect($this->tagInfo);
-        $data->averageSuccess = $this->generateAverage();
+        $data->generalQualityStatistics = $this->generateGeneralStatistics();
 
         return $data;
     }
@@ -86,16 +86,25 @@ class QualityService {
         return $tagStatistic;
     }
 
-    private function generateAverage() {
+    private function generateGeneralStatistics() {
         $totalNumValid = 0;
         $totalCount = 0;
 
+        $successNumber = 0;
+        $errorNumber = 0;
+
         foreach ($this->tagInfo as $tagName => $tagContent) {
+            $tagContent->generalStatus ? $successNumber++ : $errorNumber++;
+
             //Se obtiene la fórmula de acuerdo a los valores definidos para cada regla
             $totalNumValid += ($tagContent->numValid * $this->tagValues[$tagName]);
             $totalCount += ($tagContent->total * $this->tagValues[$tagName]);
         }
+        $generalQualityStatistics = (object) array();
+        $generalQualityStatistics->averageSuccess = ($totalNumValid * 100) / $totalCount;
+        $generalQualityStatistics->successNumber = $successNumber;
+        $generalQualityStatistics->errorNumber = $errorNumber;
 
-        return ($totalNumValid * 100) / $totalCount;
+        return $generalQualityStatistics;
     }
 }
