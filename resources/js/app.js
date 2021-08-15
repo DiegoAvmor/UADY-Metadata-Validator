@@ -17,36 +17,72 @@ $(document).ready(function () {
         $("#description").text(metadatos['description']);
         
         var metaString = metadatos['rejectMessages'];
+        var urls = metadatos['url'];
         var rejectMessages =  metaString.split(",");
+        var resource_url = urls.split(",");
 
         var table = document.getElementById("tableModal");
         var header = table.createTHead();
         var row = header.insertRow(0);    
-        var cell = row.insertCell(0);
-        cell.innerHTML = "<b>Mensajes de Error</b>"; 
+        var description_header = row.insertCell(0);
+        var url_header = row.insertCell(1);
+        description_header.innerHTML = "<b>Mensajes de Error</b>"; 
+        url_header.innerHTML = "<b>URL</b>"; 
 
         var tbodyRef = document.getElementById('tableModal').getElementsByTagName('tbody')[0];
 
         if (metaString !== "") {
             
             if (rejectMessages.length > 1) {
-                rejectMessages.forEach(function(entry) {
+                rejectMessages.forEach(function(entry, index) {
                     var newRow = tbodyRef.insertRow();
-                    var newCell = newRow.insertCell();
-                    var newText = document.createTextNode(entry);
-                    newCell.appendChild(newText);
+                    var description_cell = newRow.insertCell();
+                    var description_text = document.createTextNode(entry);
+                    description_cell.appendChild(description_text);
+                    var url_cell = newRow.insertCell();
+
+                    var url_button = document.createElement('button');
+                    var url_icon = document.createElement('i');
+                    var link = "";
+                    link = "window.open(" + '\'' + resource_url[index] + '\'' + ",'_blank')";
+
+                    url_button.setAttribute('class', "btn btn-primary-outline");
+                    url_button.setAttribute('onclick', link);
+                    url_icon.setAttribute('class', "fas fa-link");
+                    url_icon.setAttribute('aria-hidden', "true");
+
+                    url_button.appendChild(url_icon);
+                    url_cell.appendChild(url_button);
                 }, this);
             }else{
                 var newRow = tbodyRef.insertRow();
-                var newCell = newRow.insertCell();
-                var newText = document.createTextNode(rejectMessages[0]);
-                newCell.appendChild(newText);
+                var description_cell = newRow.insertCell();
+                var description_text = document.createTextNode(rejectMessages[0]);
+                description_cell.appendChild(description_text);
+                var url_cell = newRow.insertCell();
+
+                var url_button = document.createElement('button');
+                var url_icon = document.createElement('i');
+                var link = "";
+                link = "window.open(" + '\'' + resource_url[0] + '\'' + ",'_blank')";
+
+                url_button.setAttribute('class', "btn btn-primary-outline");
+                url_button.setAttribute('onclick', link);
+                url_icon.setAttribute('class', "fas fa-link");
+                url_icon.setAttribute('aria-hidden', "true");
+
+                url_button.appendChild(url_icon);
+                url_cell.appendChild(url_button);
             }
         }else{
             var newRow = tbodyRef.insertRow();
-            var newCell = newRow.insertCell();
-            var newText = document.createTextNode("No se encontraron problemas con este metadato");
-            newCell.appendChild(newText);
+            var description_cell = newRow.insertCell();
+            var description_text = document.createTextNode("No se encontraron problemas con este metadato");
+            description_cell.appendChild(description_text);
+
+            var url_cell = newRow.insertCell();
+                var url_text = document.createTextNode("");
+                url_cell.appendChild(url_text);
         }
 
     });
