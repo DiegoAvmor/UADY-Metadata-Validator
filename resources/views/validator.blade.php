@@ -56,7 +56,10 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Tag</th>
                 <th scope="col">Estatus</th>
-                <th scope="col">Tipo<i class="fas fa-info-circle" data-bs-toggle="tooltip"></i></th>
+                <th scope="col">Tipo<i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="M (Obligatorio)
+                MA (Obligatorio cuando aplique)
+                R (Recomendado)
+                O (Opcional)"></i></th>
                 <th scope="col">Reglas Cumplidas</th>
                 <th scope="col">Ver Más</th>
             </tr>
