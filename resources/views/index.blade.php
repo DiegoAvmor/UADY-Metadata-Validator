@@ -57,6 +57,11 @@
         @yield('tableResults')
     </main>
     <script src="{{asset('js/app.js')}}"></script>
+    <script>
+        $(function(){
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    </script>
 </body>
 
 </html>
