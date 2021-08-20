@@ -27,12 +27,11 @@ $(document).ready(function () {
         var description_header = row.insertCell(0);
         var url_header = row.insertCell(1);
         description_header.innerHTML = "<b>Mensajes de Error</b>"; 
-        url_header.innerHTML = "<b>URL</b>"; 
 
         var tbodyRef = document.getElementById('tableModal').getElementsByTagName('tbody')[0];
 
         if (metaString !== "") {
-            
+            url_header.innerHTML = "<b>URL</b>"; 
             if (rejectMessages.length > 1) {
                 rejectMessages.forEach(function(entry, index) {
                     var newRow = tbodyRef.insertRow();
