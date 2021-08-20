@@ -14,15 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
-
-Route::get('/validator', function(){
-    return view('validator');
-});
-
-Route::prefix('/service')->group(function () {
-    Route::get('/validate', 'ValidatorController@harvestURL')->name('harvest_url');
-    Route::post('/validateXML','ValidatorController@validateXML')->name('validate_xml');
-});
-
