@@ -19,9 +19,9 @@ class PublicationTypeValidator extends RuleValidator{
 
     public function validateMetadata($content){
         try{
-            $publiType = $content->type;
-            if($doesExist = $this->validateExistence($publiType)){
-                $matches = (bool) preg_match('/(info:eu\-repo\/semantics\/)/',(string) $publiType);
+            $publicType = $content->type;
+            if($this->validateExistence($publicType)){
+                $matches = (bool) preg_match('/(info:eu\-repo\/semantics\/)/',(string) $publicType);
                 return $this->buildValidationResponse($matches, $matches ? trans('rules.valid') : trans('rules.exists', ['tag' => 'type']));
             }
         }catch(Exception $exception){

@@ -1,4 +1,5 @@
 @extends('index')
+@include('modal')
 
 @section('generalSumary')
 @isset($data)
@@ -68,7 +69,27 @@
             <td class="text-center">{!! $qualityResult->generalStatus ? '<i class="fas fa-check-circle text-success"></i>' : '<i class="fas fa-exclamation-circle text-danger"></i>' !!}</td>
             <td class="text-center">{{$qualityResult->data['ruleType']}}</td>
             <td class="text-center">{{$qualityResult->numValid ."/". $qualityResult->total}}</td>
-            <td class="text-center"><i class="fab fa-get-pocket"></i></td>
+            <td class="text-center">
+                <!-- Button trigger modal -->
+                @php
+                    $errorMessages = array();
+                    $url_recursos = array();
+                    foreach($qualityResult->rejectMessages as $key => $errorMessage){
+                        array_push($errorMessages, $errorMessage->message);
+                        array_push($url_recursos, $errorMessage->id);
+                    }
+                @endphp
+                <button type="button" class="btn btn-primary-outline modalInformation" data-toggle="modal" data-target="#metadataModal"
+                value='{    
+                    "ruleKeyName" : "{{ $ruleKeyName }}", 
+                    "description" : "{{ $qualityResult->data['description'] }}",
+                    "rejectMessages" : "{{ !empty($qualityResult->rejectMessages) ? implode(",", $errorMessages)  : "" }}",
+                    "url" : "{{ !empty($qualityResult->rejectMessages) ? implode(",", $url_recursos)  : ""  }}"
+                }'>
+                    <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
+                </button>
+                @yield('modal_layout')
+            </td>
         </tr>
         @endforeach
     </table>
