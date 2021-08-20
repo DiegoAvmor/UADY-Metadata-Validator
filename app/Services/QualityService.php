@@ -43,6 +43,7 @@ class QualityService {
     }
 
     private function analyzeRecord($item, $record) {
+        $id = isset($record['Resource Identifier'])?$record['Resource Identifier']->aditionalData:$item;
         foreach($record as $tagName => $tagContent) {
             if(isset($this->tagInfo[$tagName])) {
                 //Se actualiza el valor del tag específico
@@ -50,13 +51,16 @@ class QualityService {
                     $this->tagInfo[$tagName]->numValid++;
                 } else {
                     $this->tagInfo[$tagName]->generalStatus = false;
-                    $this->tagInfo[$tagName]->rejectMessages[] = trans('rules.reject_msg_template', ['id'=> $item, 'message' => $tagContent->message ]);
+                    $errorObject = (object) array();
+                    $errorObject->id = $id;
+                    $errorObject->message = $tagContent->message;
+                    $this->tagInfo[$tagName]->rejectMessages[] = $errorObject;
                 }
 
                 $this->tagInfo[$tagName]->total++;
             } else {
                 //Se crea el valor del tag dentro del array
-                $this->tagInfo[$tagName] = $this->createNewTagInfo($item, $tagName, $tagContent);
+                $this->tagInfo[$tagName] = $this->createNewTagInfo($id, $tagName, $tagContent);
             }
         }
     }
@@ -76,7 +80,10 @@ class QualityService {
             $tagStatistic->numValid = 1;
         } else {
             $tagStatistic->numValid = 0;
-            $tagStatistic->rejectMessages[] = trans('rules.reject_msg_template', ['id'=> $item, 'message' => $tagContent->message ]);
+            $errorObject = (object) array();
+            $errorObject->id = $item;
+            $errorObject->message = $tagContent->message;
+            $tagStatistic->rejectMessages[] = $errorObject;
         }
 
         //Se establece el estado general de acuerdo al primer valor

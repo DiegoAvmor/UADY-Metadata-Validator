@@ -22,8 +22,8 @@ class ResourceIdentifierValidator extends RuleValidator{
             $resourceId= $content->identifier;
 
             if ($this->validateExistence($resourceId)){
-                $matches = (bool) preg_match('/(\/{1}(ark|doi|hdl|purl|url|urn)\/{1}[^\s]{1,}))$/',(string) $resourceId);
-                return $this->buildValidationResponse($matches, $matches ? trans('rules.valid'): trans('rules.resourceId_format'));
+                $matches = (bool) preg_match('/(\/{1}(ark|doi|hdl|purl|url|urn)\/{1}[^\s]{1,})$/',(string) $resourceId);
+                return $this->buildValidationResponse($matches, $matches ? trans('rules.valid'): trans('rules.resourceId_format'),(string) $resourceId);
                 
             }
             return $this->buildValidationResponse(false, trans('rules.exists', ['tag' => 'identifier']));
