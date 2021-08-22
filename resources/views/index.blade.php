@@ -24,7 +24,6 @@
             <h5 class="pt-2 hdln-5">Universidad Autónoma de Yucatán</h5>
         </div>
     </header>
-
     <main>
         <div class="container mb-3">
             <!-- Grid container-->
@@ -56,12 +55,16 @@
         </div>
         @yield('tableResults')
     </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" charset="utf-8"></script>
     <script src="{{asset('js/app.js')}}"></script>
     <script>
         $(function(){
-            $('[data-bs-toggle="tooltip"]').tooltip();
+            $('[data-bs-toggle="tooltip"]').tooltip({html:true});
         });
     </script>
+    @yield('chart_script')
+    
 </body>
 
 </html>
