@@ -1,5 +1,6 @@
 require('./bootstrap');
 require('./jquery');
+require('./chart');
 
 
 $(document).ready(function () {
