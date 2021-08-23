@@ -29,7 +29,7 @@
         <h5 class="mt-3 text-center text-warning" id="percentResults">
             {{ number_format($data->generalQualityStatistics->averageSuccess,2)}}%
             <button type="button" class="btn btn-primary-outline" data-toggle="modal" data-target="#chartModal">
-                <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
+                <i class="fas fa-chart-line"></i>
             </button>
         </h5>
         @yield('chart_modal')
