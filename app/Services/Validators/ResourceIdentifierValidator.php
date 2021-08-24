@@ -22,7 +22,7 @@ class ResourceIdentifierValidator extends RuleValidator{
             $resourceId= $content->identifier;
 
             if ($this->validateExistence($resourceId)){
-                $matches = (bool) preg_match('/(\/{1}(ark|doi|hdl|purl|url|urn)\/{1}[^\s]{1,})$/',(string) $resourceId);
+                $matches = (bool) preg_match("/^([a-z][a-z0-9+.-]*):(?:\\/\\/((?:(?=((?:[a-z0-9-._~!$&'()*+,;=:]|%[0-9A-F]{2})*))(\\3)@)?(?=(\\[[0-9A-F:.]{2,}\\]|(?:[a-z0-9-._~!$&'()*+,;=]|%[0-9A-F]{2})*))\\5(?::(?=(\\d*))\\6)?)(\\/(?=((?:[a-z0-9-._~!$&'()*+,;=:@\\/]|%[0-9A-F]{2})*))\\8)?|(\\/?(?!\\/)(?=((?:[a-z0-9-._~!$&'()*+,;=:@\\/]|%[0-9A-F]{2})*))\\10)?)(?:\\?(?=((?:[a-z0-9-._~!$&'()*+,;=:@\\/?]|%[0-9A-F]{2})*))\\11)?(?:#(?=((?:[a-z0-9-._~!$&'()*+,;=:@\\/?]|%[0-9A-F]{2})*))\\12)?$/i",(string) $resourceId);
                 return $this->buildValidationResponse($matches, $matches ? trans('rules.valid'): trans('rules.resourceId_format'),(string) $resourceId);
                 
             }
