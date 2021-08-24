@@ -3,6 +3,7 @@ namespace App\Services\Validators;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class AudienceValidator extends RuleValidator{
 
@@ -33,24 +34,10 @@ class AudienceValidator extends RuleValidator{
     }
 
     public function validateAudience($audience) : bool{
-        $catalogueCONACYT = array(
-            "Administrators",
-            "Community Groups",
-            "Counsellors",
-            "Federal Funds Recipients and Applicants",
-            "Librarians",
-            "News Media",
-            "Other",
-            "Parents and Families",
-            "Policymakers",
-            "Researchers",
-            "School Support Staff",
-            "Student Financial Aid Providers",
-            "Students",
-            "Teachers"
-        );
+        $rawInfo = strtolower(Storage::get('AudienceCatalogue.txt'));
+        $audienceCatalogue = explode("\r\n", $rawInfo);
 
-        return in_array($audience, $catalogueCONACYT);
+        return in_array(strtolower ($audience), $audienceCatalogue);
     }
 
 }
