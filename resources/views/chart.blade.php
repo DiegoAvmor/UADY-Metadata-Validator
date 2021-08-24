@@ -41,7 +41,7 @@
     </div>
 @endsection
 
-@section('chart_script')
+@push('chart_script')
     <!-- Scripts for Charts -->
     <script>
         @isset($data)
@@ -141,5 +141,5 @@
 
         @endisset
     </script>
-@endsection
+@endpush
     
