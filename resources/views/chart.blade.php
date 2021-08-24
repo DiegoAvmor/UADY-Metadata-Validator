@@ -92,6 +92,13 @@
             data: {
                 labels: tagNames,
                 datasets: [obtainedChart, perfectChart]
+            }, 
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         });
         
