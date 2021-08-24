@@ -28,7 +28,6 @@ class QualityService {
     }
 
     public function getQualityResults($validatorsResults) {
-
         foreach($validatorsResults as $item => $record) {
             $this->analyzeRecord($item, $record);
         }
@@ -43,7 +42,7 @@ class QualityService {
     }
 
     private function analyzeRecord($item, $record) {
-        $id = (isset($record['Resource Identifier']) && isset($record['Resource Identifier']->aditionalData))?$record['Resource Identifier']->aditionalData:$item;
+        $id = (isset($record['Resource Identifier']) && $record['Resource Identifier']->status)?$record['Resource Identifier']->aditionalData:$item;
         foreach($record as $tagName => $tagContent) {
             if(isset($this->tagInfo[$tagName])) {
                 //Se actualiza el valor del tag específico
