@@ -36,7 +36,7 @@ class ValidatorController extends Controller
             $data = $this->XMLService->validateXML($xmlInput);
 
             if(empty($data) || $data == null) {
-                return back()->withErrors('Failed', 'Invalid XML');
+                return view('validator', ['error' => 'Invalid XML']);
             }
 
             return view('validator', ['data' => $data]);
