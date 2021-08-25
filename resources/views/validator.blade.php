@@ -8,14 +8,24 @@
         $percentResult = number_format($data->generalQualityStatistics->averageSuccess,2);
         $successNumber = $data->generalQualityStatistics->successNumber;
         $errorNumber = $data->generalQualityStatistics->errorNumber;
-        $buttonType = "fas fa-check-circle text-success";
+        $validXMLType = "fas fa-check-circle text-success";
+        $contentXMLType = "fas fa-check-circle text-success";
     }
 
     if(isset($error)){
         $percentResult = " -- ";
         $successNumber = "0";
         $errorNumber = "0";
-        $buttonType = "fas fa-exclamation-circle text-danger";
+
+        if ($error === "Invalid XML") {
+            $validXMLType = "fas fa-exclamation-circle text-danger";
+            $contentXMLType = "fas fa-exclamation-circle text-danger";
+        }
+
+        if ($error === "Invalid Content") {
+            $validXMLType = "fas fa-check-circle text-success";
+            $contentXMLType = "fas fa-exclamation-circle text-danger";
+        }
     }
 @endphp
 <div class="col ml-5 pl-5">
@@ -24,9 +34,9 @@
         <h4>Resultados</h4>
         <ol class="list-group list-group-numbered">
             <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Conexión Establecida</li>
-            <li class="list-group-item"><i class="{{$buttonType}}"></i>Comprobación de XML</li>
-            <li class="list-group-item"><i class="{{$buttonType}}"></i>Contenido del XML Verificado</li>
-            <li class="list-group-item"><i class="{{$buttonType}}"></i>Metadatos Listados</li>
+            <li class="list-group-item"><i class="{{$validXMLType}}"></i>Comprobación de XML</li>
+            <li class="list-group-item"><i class="{{$contentXMLType}}"></i>Contenido del XML Verificado</li>
+            <li class="list-group-item"><i class="{{$contentXMLType}}"></i>Metadatos Listados</li>
         </ol>
     </div>
     <div class="border-bottom border-warning">
