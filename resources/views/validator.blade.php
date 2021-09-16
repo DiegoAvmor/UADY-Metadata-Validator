@@ -1,5 +1,6 @@
 @extends('index')
 @include('modal')
+@include('chart')
 
 @section('generalSumary')
 @isset($data)
@@ -25,7 +26,13 @@
     </div>
     <div class="border-bottom border-warning">
         <h5 class="mt-5 text-center">Resultados de Validación de Datos</h5>
-        <h5 class="mt-3 text-center text-warning" id="percentResults">{{ number_format($data->generalQualityStatistics->averageSuccess,2)}}%</h5>
+        <h5 class="mt-3 text-center text-warning" id="percentResults">
+            {{ number_format($data->generalQualityStatistics->averageSuccess,2)}}%
+            <button type="button" class="btn btn-primary-outline" data-toggle="modal" data-target="#chartModal">
+                <i class="fas fa-chart-line"></i>
+            </button>
+        </h5>
+        @yield('chart_modal')
         <h6 class="text-center text-dark">Datos Correctos</h6>
     </div>
     <div>
@@ -57,10 +64,11 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Tag</th>
                 <th scope="col">Estatus</th>
-                <th scope="col">Tipo<i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="M (Obligatorio)
-                MA (Obligatorio cuando aplique)
-                R (Recomendado)
-                O (Opcional)"></i></th>
+                <th scope="col">Tipo<i class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="
+                    M (Obligatorio)<br>
+                    MA (Obligatorio cuando aplique)<br>
+                    R (Recomendado)<br>
+                    O (Opcional)"></i></th>
                 <th scope="col">Reglas Cumplidas</th>
                 <th scope="col">Ver Más</th>
             </tr>
