@@ -22,12 +22,12 @@ class PublicationVersionValidator extends RuleValidator
         try {
             $typeTag = $content->type;
 
-            if ($this->validateExistence($typeTag)) {
-                $matches = (bool) preg_match('(draft|submittedVersion|acceptedVersion|publishedVersion|updatedVersion)',(string) $typeTag);
-
-                return $this->buildValidationResponse($matches, $matches ? trans('rules.valid') : trans('rules.type'));
+            if (!$this->validateExistence($typeTag)) {
+                return;
             }
-            return $this->buildValidationResponse(false, trans('rules.exists', ['tag' => 'type']));
+
+            $matches = (bool) preg_match('(draft|submittedVersion|acceptedVersion|publishedVersion|updatedVersion)',(string) $typeTag);
+            return $this->buildValidationResponse($matches, $matches ? trans('rules.valid') : trans('rules.type'));
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return $this->buildValidationResponse(false, $exception->getMessage());

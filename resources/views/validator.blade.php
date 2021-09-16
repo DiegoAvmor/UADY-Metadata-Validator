@@ -3,32 +3,47 @@
 @include('chart')
 
 @section('generalSumary')
-@isset($data)
+@php
+    if(isset($data)){
+        $percentResult = number_format($data->generalQualityStatistics->averageSuccess,2);
+        $successNumber = $data->generalQualityStatistics->successNumber;
+        $errorNumber = $data->generalQualityStatistics->errorNumber;
+        $validXMLType = "fas fa-check-circle text-success";
+        $contentXMLType = "fas fa-check-circle text-success";
+    }
+
+    if(isset($error)){
+        $percentResult = " -- ";
+        $successNumber = "0";
+        $errorNumber = "0";
+
+        if ($error === "Invalid XML") {
+            $validXMLType = "fas fa-exclamation-circle text-danger";
+            $contentXMLType = "fas fa-exclamation-circle text-danger";
+        }
+
+        if ($error === "Invalid Content") {
+            $validXMLType = "fas fa-check-circle text-success";
+            $contentXMLType = "fas fa-exclamation-circle text-danger";
+        }
+    }
+@endphp
 <div class="col ml-5 pl-5">
     <!-- verify the padding tho -->
     <div>
         <h4>Resultados</h4>
-        @if (isset($connectionErrors))
         <ol class="list-group list-group-numbered">
-            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Conexión Extablecida</li>
-            <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Comprobación de XML</li>
-            <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Contenido del XML verificado</li>
-            <li class="list-group-item"><i class="fas fa-exclamation-circle text-danger"></i>Metadatos Listados</li>
+            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Conexión Establecida</li>
+            <li class="list-group-item"><i class="{{$validXMLType}}"></i>Comprobación de XML</li>
+            <li class="list-group-item"><i class="{{$contentXMLType}}"></i>Contenido del XML Verificado</li>
+            <li class="list-group-item"><i class="{{$contentXMLType}}"></i>Metadatos Listados</li>
         </ol>
-        @else
-        <ol class="list-group list-group-numbered">
-            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Conexión Extablecida</li>
-            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Comprobación de XML</li>
-            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Contenido del XML verificado</li>
-            <li class="list-group-item"><i class="fas fa-check-circle text-success"></i>Metadatos Listados</li>
-        </ol>
-        @endif
     </div>
     <div class="border-bottom border-warning">
         <h5 class="mt-5 text-center">Resultados de Validación de Datos</h5>
-        <h5 class="mt-3 text-center text-warning" id="percentResults">
-            {{ number_format($data->generalQualityStatistics->averageSuccess,2)}}%
-            <button type="button" class="btn btn-primary-outline" data-toggle="modal" data-target="#chartModal">
+        <h5 class="mt-3 text-center text-warning" id="percentResults">  
+            {{$percentResult}}%
+            <button type="button" class="btn btn-primary-outline" data-toggle="modal" data-target="#chartModal" @if(!isset($data)) disabled @endif>
                 <i class="fas fa-chart-line"></i>
             </button>
         </h5>
@@ -39,19 +54,18 @@
         <table class="table">
         <thead class="text-center">
             <tr>
-                <th scope="col">Número de metadatos correctos</th>
-                <th scope="col">Número de metadatos incorrectos</th>
+                <th scope="col">Número de Metadatos Correctos</th>
+                <th scope="col">Número de Metadatos Incorrectos</th>
             </tr>
         </thead>
         <tr>
-            <td class="text-center">{{$data->generalQualityStatistics->successNumber}}</td>
-            <td class="text-center">{{$data->generalQualityStatistics->errorNumber}}</td>
+            <td class="text-center">{{$successNumber}}</td>
+            <td class="text-center">{{$errorNumber}}</td>
         </tr>
         </table>
-        <button type="button" class="btn btn-warning px-4 float-right" id="showBtton">Ver Detalles</button>
+        <button type="button" class="btn btn-warning px-4 float-right" id="showBtton" @if(!isset($data)) disabled @endif>Ver Detalles</button>
     </div>
 </div>
-@endisset
 
 @section('tableResults')
 <!-- table details section -->

@@ -41,7 +41,7 @@
     </div>
 @endsection
 
-@section('chart_script')
+@push('chart_script')
     <!-- Scripts for Charts -->
     <script>
         @isset($data)
@@ -92,6 +92,13 @@
             data: {
                 labels: tagNames,
                 datasets: [obtainedChart, perfectChart]
+            }, 
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         });
         
@@ -134,5 +141,5 @@
 
         @endisset
     </script>
-@endsection
+@endpush
     

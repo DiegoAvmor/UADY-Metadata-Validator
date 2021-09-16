@@ -62,8 +62,9 @@
             $('[data-bs-toggle="tooltip"]').tooltip({html:true});
         });
     </script>
-    @yield('chart_script')
     
+    <!-- Blade scripts  -->
+    @stack('chart_script')
 </body>
 
 </html>

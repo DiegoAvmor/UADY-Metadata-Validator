@@ -33,13 +33,13 @@ class ValidatorController extends Controller
     public function validateXML(Request $request){
         try { 
             $xmlInput = $request->input('xmlInput');
-            $data = $this->XMLService->validateXML($xmlInput);
+            $response = $this->XMLService->validateXML($xmlInput);
 
-            if(empty($data) || $data == null) {
-                return back()->withErrors('Failed', 'Invalid XML');
+            if(is_string($response)) {
+                return view('validator', ['error' => $response]);
             }
 
-            return view('validator', ['data' => $data]);
+            return view('validator', ['data' => $response]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return back()->withErrors('Failed', $e->getMessage()); 

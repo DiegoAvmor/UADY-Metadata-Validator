@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-use Exception;
+use ErrorException, Exception;
 use Illuminate\Support\Facades\Log;
 use SimpleXMLElement;
 
@@ -28,10 +28,13 @@ class XMLService extends ValidatorService{
             }
 
             return $this->createQualityArray($validationResults);
-        } catch(Exception $e) {
-            Log::error($e->getMessage());
+        } catch(ErrorException $ee) {
+            Log::error($ee->getMessage());
+            return 'Invalid Content';
+        } catch (Exception $e) {
+            Log::error($e->getCode());
+            return 'Invalid XML';
         }
-
     }
 }
 
